@@ -1,8 +1,9 @@
 const express = require('express');
 const router  = express.Router();
 const Posting = require('../models/Posting');
-const Child = require('../models/Child');
-const User = require('../models/User');
+const Child   = require('../models/Child');
+const User    = require('../models/User');
+var moment    = require('moment');
 
 const fileUploader = require('../config/cloudinary-file');
 
@@ -50,16 +51,17 @@ router.get('/api/feed/created-post/:id', (req, res, next)=>{
 // CREATE NEW CHILD =========================================================
 
 router.post('/api/feed/new-child', fileUploader.single('newChildImage'), (req, res, next)=>{
-  
+
     Child.create({ 
         name: req.body.childName,
-        dob: req.body.childDob,
+        dob: moment(req.body.childDob).format("MM/DD/YYYY"),
         image: req.file.url,
         creator: req.user._id
     })
     .then((newChild)=>{
   
         res.json({msg: 'Data has been converted into JSON', newChild});
+        console.log(newChild.data)
     })  
     .catch((err)=>{
         console.log(err)
