@@ -84,9 +84,9 @@
         <div class="card-content">
           <span class="card-title activator grey-text text-darken-4">{{this.name}}<i class="material-icons right">mode_edit</i></span>
           {{!-- <p><a href="/feed/details/{{this._id}}">Edit Profile</a></p> --}}
-          <p>
-            <!-- {{this.dob}} --> # Years Old</p>
+          <p> {{moment-age this.creation childDob='2018-06-04'}} Years Old</p>
         </div>
+
 
         <!-- Reveal edit form -->
         <div class="card-reveal">
@@ -175,11 +175,11 @@
 
   <!-- Home feed -->
   <div class="post-container">
-    <h1>Home Feed</h1>
-
+    <h2>Home Feed</h2>
 
     <!-- Gallery -->
     <div id="portfolio" class="section gray">
+
       <div class="gallery row">
 
         {{#each listOfPosts}}
@@ -187,7 +187,7 @@
         <div class="col l4 m6 s12 gallery-item gallery-expand gallery-filter polygon">
           <div class="gallery-curve-wrapper">
             <a class="gallery-cover gray">
-              <img class="responsive-img" src="{{this.image}}" alt="placeholder">
+              <img class="responsive-img" src="{{this.image}}" alt="{{this.description}}">
             </a>
             <div class="gallery-header">
               <span>{{this.title}}</span>
@@ -200,6 +200,7 @@
               <p class="description">
                 {{this.description}}
               </p>
+<<<<<<< HEAD
               
               <div class="carousel-wrapper">
                 <div class="carousel">
@@ -210,26 +211,25 @@
                   <a class="carousel-item" href="#five!"><img src="http://placehold.it/300x200"></a>
                 </div>
               </div>
+=======
+              <img class="responsive-img" src=" {{this.image}}" alt="{{this.description}}" style="width:100%;">
+              <a href="#">Edit this Piece</a>
+>>>>>>> 6a8fb584d2dfc47fb92677fa5f48f29749a152ac
             </div>
+
             <div class="gallery-action">
-              <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">favorite</i></a>
+              <a href="#" class="btn-floating btn-large waves-effect waves-light tooltipped" data-position="bottom" data-tooltip="Send to Grandma"><i class="material-icons">email</i></a>
+              <a href="#" class="btn-floating btn-large waves-effect waves-light tooltipped" data-position="bottom" data-tooltip="Order Prints"><i class="material-icons">wallpaper</i></a>
             </div>
+
           </div>
         </div>
         {{/each}}
 
       </div>
-
     </div><!-- Close portfolio container -->
-
   </div> <!-- Close post container -->
 
-
-  <footer>
-    <div class="right">
-      ©2019 all rights reserved. A project by Dusty Garon & Nelly Gonzalez-Vinas.
-    </div>
-  </footer>
 
 </div>
 
