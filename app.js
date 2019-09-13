@@ -18,6 +18,20 @@ hbs.registerHelper('moment-age', function(context, options) {
   return duration
 });
 
+hbs.registerHelper('modifyUrlOfProfile', function(context, options) {
+  var url = context; 
+  var stringToAddToUrl = options.hash.urlString; 
+  let position = url.indexOf("upload")
+  let posToInsertString = position += 7
+
+  let modifiedString = url.substr(0, posToInsertString) + stringToAddToUrl + url.substr(posToInsertString); 
+
+  return modifiedString
+});
+
+
+
+
 module.exports = hbs;
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
