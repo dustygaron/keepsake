@@ -1,0 +1,188 @@
+$color-purple: #89249f;
+$color-salmon: #f48578;
+$color-yellow: #f2b550;
+
+a {
+  color: $color-purple;
+}
+
+h2 {
+  color: $color-salmon;
+}
+
+p {
+  color: red;
+}
+
+.btn-floating {
+  background-color: $color-yellow;
+}
+
+.welcome-back {
+  margin-right: 33px;
+}
+
+.welcome-back span,
+.user-details span {
+  text-transform: capitalize;
+}
+
+
+// -----------
+// TOP NAV
+// -----------
+.search-wrapper {
+  background: $color-salmon;
+  max-width: 300px;
+  height: 64px;
+}
+
+input[type="search"]:not(.browser-default):focus {
+  background: rgba(255, 206, 206, 0.523);
+}
+
+.magnify-icon {
+  margin-top: -10px;
+}
+
+.k-icon {
+  max-height: 23px;
+}
+
+// -------------
+// HOME FEED 
+// -------------
+.card.small {
+  height: 360px;
+}
+
+.card.small .card-image {
+  max-height: 70%;
+}
+
+.btn-save-child,
+.btn-submit {
+  background: $color-yellow;
+  padding: 5px 12px;
+  border-radius: 4px;
+  color: white;
+  border: none;
+  margin-top: 10px;
+}
+
+.btn-remove-child,
+.btn-delete {
+  border: none;
+  text-decoration: underline;
+  color: red;
+  letter-spacing: .5px;
+  margin-top: 10px;
+  background: none;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border: 1px solid whitesmoke;
+  align-items: center;
+  margin-right: -20px;
+}
+
+.circle-toggles img {
+  transform: translateY(12px);
+}
+
+.top-nav-toggles li {
+  margin-right: 5px;
+}
+
+#topnav-add-child-button i {
+  background: gray;
+}
+
+.card {
+  margin: 1.5rem 0 1rem 0 !important;
+}
+
+
+// child feed avatar
+#child-feed-avatar {
+  width: 180px;
+  height: 180px;
+  border: 5px solid white;
+}
+
+#child-feed-avatar img {
+  height: 100%;
+  width: auto;
+}
+
+#child-feed-avatar.btn-floating.halfway-fab {
+  bottom: 112px !important;
+}
+
+.child-name {
+  color: white;
+  text-shadow: 0 -1px 0 #fff,
+    0 1px 0 #2e2e2e,
+    0 2px 0 #2c2c2c,
+    0 3px 0 #2a2a2a,
+    0 22px 30px rgba(0, 0, 0, 0.9);
+}
+
+// ------------------------
+// ADD ART COLLAPSIBLE FORM
+// ------------------------
+.collapsible-body {
+  background: white;
+}
+
+#add-artwork-collapsible .collapsible-header {
+  line-height: 2.5;
+}
+
+
+// -----------
+// login PAGE
+// -----------
+#login-page-logo {
+  max-width: 200px;
+  margin: 80px;
+}
+
+.login-page-left h3 {
+  color: white;
+  font-size: 2em;
+  margin: 0 30px 0 80px;
+  line-height: 130%;
+}
+
+.login-page-container {
+  background-image: url("/images/bg.jpg");
+  background-size: cover;
+  display: flex;
+  height: 100vh;
+}
+
+.login-page-left {
+  width: 40vw;
+}
+
+.login-page-right {
+  width: 60vw;
+}
+
+.login-box {
+  width: 60%;
+}
+
+// EDIT USER 
+#user-children img {
+  margin-right: 10px;
+}
+
+.edit-user-account {
+  margin-top: 33px;
+  padding: 75px 50px;
+  background: white;
+}

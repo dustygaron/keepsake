@@ -1,0 +1,120 @@
+<nav class="nav-extended">
+  <div class="nav-wrapper container">
+    <a href="/" class="brand-logo">
+      <img src="/images/logo.png" alt="keepsake logo" class="k-icon"> Keepsake
+    </a>
+    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+
+    <ul class="right hide-on-med-and-down top-nav-toggles">
+      <li class="welcome-back">
+        {{#if currentUser}}
+        You've got some talented kids, <span>{{currentUser.username}}</span>
+        {{/if}}
+      </li>
+
+      {{#each listOfChildren}}
+      {{#if this.owned}}
+      <li class="circle-toggles">
+        <a href="/feed/{{this._id}}">
+          <img class="circle avatar" src="{{this.image}}">
+        </a>
+      </li>
+      {{/if}}
+      {{/each}}
+      <li class="circle-toggles">
+        <div class="topnav-add-child-button">
+          <a class="btn-floating btn waves-effect waves-light modal-trigger" href="#modal1"><i class="material-icons">add</i></a>
+        </div>
+      </li>
+
+      <li>
+        <div class="search-wrapper">
+          <form>
+            <div class="input-field">
+              <input id="search" type="search" required>
+              <label class="label-icon" for="search"><i class="material-icons magnify-icon" placeholder="search artwork">search</i></label>
+              <i class="material-icons">close</i>
+            </div>
+          </form>
+        </div>
+      </li>
+      <li><a class="dropdown-button" href="#!" data-activates="dropdown1">My Account<i class="material-icons right">arrow_drop_down</i></a></li>
+    </ul>
+    <!-- Dropdown -->
+    <ul id="dropdown1" class="dropdown-content">
+      {{#if currentUser}}
+      <li><a href="/feed/user-details">Edit Profile</a></li>
+      <li><a href="/feed/logout">Logout</a>
+        {{/if}}
+      </li>
+    </ul>
+
+  </div>
+
+  <div class="nav-header center user-details">
+    {{#if currentUser}}
+    <h1>Go ahead, <span>{{currentUser.username}}</span>. Edit away.</h1>
+    {{/if}}
+    <div class="tagline">We all need a change once in a while.</div>
+  </div>
+  <div class="user-edit-bg">
+  </div>
+</nav>
+<ul class="side-nav" id="nav-mobile">
+  <li class="active"><a href="index.html"><i class="material-icons">camera</i>Gallery</a></li>
+  <li><a href="index-dark.html"><i class="material-icons">brightness_3</i>Dark Theme</a></li>
+  <li><a href="blog.html"><i class="material-icons">edit</i>Blog</a></li>
+  <li><a href="docs.html"><i class="material-icons">school</i>Docs</a></li>
+  <li><a href="full-header.html"><i class="material-icons">fullscreen</i>Fullscreen Header</a></li>
+  <li><a href="horizontal.html"><i class="material-icons">swap_horiz</i>Horizontal Style</a></li>
+  <li><a href="no-image.html"><i class="material-icons">texture</i>No Image Expand</a></li>
+</ul>
+
+<ul id="dropdown1" class="dropdown-content">
+  {{#if currentUser}}
+  <li><a href="/feed/user-details">Edit Profile</a></li>
+  <li><a href="/feed/logout">Logout</a>
+    {{!-- <form action="/logout" method="POST">
+    <a>Logout</a></form> --}}
+    {{/if}}
+  </li>
+</ul>
+
+<!-- Edit user details -->
+<div class="container">
+  <div class="row">
+    <div class="edit-user-account">
+
+      <form action="">
+        <label for="user-name">Username:</label>
+        <input type="text" id="user-name" placeholder="Current: {{theUser.username}}">
+        {{!-- {{theUser.username}} --}}
+        </input>
+
+        <label for="user-password">Password:</label>
+        <input type="text" id="user-name" placeholder="Current: {{theUser.password}}">
+        {{!-- {{theUser.password}} --}}
+        </input>
+
+        <label for="user-email">Email:</label>
+        <input type="text" id="user-email" placeholder="Current: {{theUser.email}}">
+        {{!-- {{theUser.email}} --}}
+        </input>
+
+        <div id="user-children">
+          <label for="">The Artists:</label>
+          {{#each listOfChildren}}
+          {{#if this.owned}}
+          <img class="circle avatar" src="{{this.image}}">
+          {{/if}}
+          {{/each}}
+        </div>
+        <button class="btn-submit right">Submit Changes</button>
+      </form>
+
+      <form action="/feed/user-details/{{theUser._id}}/remove" method="POST">
+        <button class="btn-delete right">Delete User Account</button>
+      </form>
+    </div>
+  </div> <!-- Close row -->
+</div> <!-- Close container -->

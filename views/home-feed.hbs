@@ -1,0 +1,268 @@
+<nav class="nav-extended">
+  <div class="nav-wrapper container">
+    <a href="/" class="brand-logo">
+      <img src="/images/logo.png" alt="keepsake logo" class="k-icon"> Keepsake
+    </a>
+    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+
+    <ul class="right hide-on-med-and-down top-nav-toggles">
+      <li class="welcome-back">
+        {{#if currentUser}}
+        You've got some talented kids, <span>{{currentUser.username}}</span>
+        {{/if}}
+      </li>
+
+      {{#each listOfChildren}}
+      {{#if this.owned}}
+      <li class="circle-toggles">
+        <a href="/feed/{{this._id}}">
+          <img class="circle avatar" src="{{this.image}}">
+        </a>
+      </li>
+      {{/if}}
+      {{/each}}
+      <li class="circle-toggles">
+        <div class="topnav-add-child-button">
+          <a class="btn-floating btn waves-effect waves-light modal-trigger" href="#modal1"><i class="material-icons">add</i></a>
+        </div>
+      </li>
+
+      <li>
+        <div class="search-wrapper">
+          <form>
+            <div class="input-field">
+              <input id="search" type="search" required>
+              <label class="label-icon" for="search"><i class="material-icons magnify-icon" placeholder="search artwork">search</i></label>
+              <i class="material-icons">close</i>
+            </div>
+          </form>
+        </div>
+      </li>
+      <li><a class="dropdown-button" href="#!" data-activates="dropdown1">My Account<i class="material-icons right">arrow_drop_down</i></a></li>
+    </ul>
+    <!-- Dropdown -->
+    <ul id="dropdown1" class="dropdown-content">
+      {{#if currentUser}}
+      <li><a href="/feed/user-details">Edit Profile</a></li>
+      <li><a href="/feed/logout">Logout</a>
+        {{/if}}
+      </li>
+    </ul>
+
+  </div>
+
+</nav>
+<ul class="side-nav" id="nav-mobile">
+  <li class="active"><a href="index.html"><i class="material-icons">camera</i>Gallery</a></li>
+  <li><a href="index-dark.html"><i class="material-icons">brightness_3</i>Dark Theme</a></li>
+  <li><a href="blog.html"><i class="material-icons">edit</i>Blog</a></li>
+  <li><a href="docs.html"><i class="material-icons">school</i>Docs</a></li>
+  <li><a href="full-header.html"><i class="material-icons">fullscreen</i>Fullscreen Header</a></li>
+  <li><a href="horizontal.html"><i class="material-icons">swap_horiz</i>Horizontal Style</a></li>
+  <li><a href="no-image.html"><i class="material-icons">texture</i>No Image Expand</a></li>
+</ul>
+
+
+<!-- MAIN CONTENT ================================== -->
+<div class="container">
+
+  <!-- Child cards -->
+  <div class="row">
+
+    {{#each listOfChildren}}
+    {{#if this.owned}}
+    <div class="col s12 m3">
+
+      <div class="card small">
+        <a href="/feed/{{this._id}}">
+          <div class="card-image waves-effect waves-block waves-light">
+            <img class="activator" src="{{this.image}}">
+          </div>
+        </a>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">{{this.name}}<i class="material-icons right">mode_edit</i></span>
+          {{!-- <p><a href="/feed/details/{{this._id}}">Edit Profile</a></p> --}}
+          <p>
+            <!-- {{this.dob}} --> # Years Old</p>
+        </div>
+
+        <!-- Reveal edit form -->
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Edit {{this.name}}<i class="material-icons right">close</i></span>
+          <p>
+            <div>
+              <form id="edit-form">
+                <input type="hidden" value="{{this._id}}" id="hidden-id">
+                <input type="text" id="edit-name" value="{{this.name}}" placeholder="name">
+                <input type="date" id="edit-dob" value="{{this.dob}}" placeholder="Birthday">
+                <button class="btn-save-child right">Save</button>
+              </form>
+              <form action="/feed/{{this._id}}/remove" method="POST">
+                <button class="btn-remove-child">Remove Child</button>
+              </form>
+            </div>
+
+          </p>
+        </div>
+      </div>
+    </div>
+    {{/if}}
+    {{/each}}
+
+    <div class="col s12 m3">
+      <a href="#modal1">
+        <div class="card">
+          <div class="card-image">
+            <img src="images/add-child.jpg">
+            <span class="card-title">Add New Child</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+
+  <!-- Home feed-->
+  <div class="row children-row" id="child-list">
+
+    <!-- Add new child modal -->
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <h4>Add Child</h4>
+        <div class="row">
+
+          {{!-- The first form method is used if getting through router. Second form method is for posting with axios --}}
+          {{!-- <form class="col s12" action="/feed/create-child" method="POST" enctype="multipart/form-data"> --}}
+          <form class="col s12" id="create-child">
+            <input type="hidden" id="creatorId" value="{{theUser._id}}">
+            <div class="row">
+              <div class="input-field col s12">
+                <input placeholder="Ex: Johnny" id="childName" type="text" class="validate" name="theName">
+                <label for="child_name">Child's Name</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <label for="birthdate">Child's Birthdate</label>
+                <input type="date" class="datepicker" class="validate" name="theDateOfBirth" id="childDob">
+              </div>
+            </div>
+            <div class="row">
+              <div class="file-field input-field col s12">
+                <div class="btn waves-effect">
+                  <span>File</span>
+                  <input type="file" id="newChildImage">
+                </div>
+                <div class="file-path-wrapper">
+                  <input class="file-path validate" type="text" placeholder="Upload an image of your child">
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <div class="col s12 push">
+                <button class="btn waves-effect waves-light btn-large modal-close" type="submit" name="action">Add Child
+                  <i class="material-icons right">send</i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div> <!-- END CHILD MODAL -->
+  </div> <!-- end child row -->
+
+
+
+  <!-- Home feed -->
+  <div class="post-container">
+    <h1>Home Feed</h1>
+
+    {{!-- {{#each listOfPosts}}
+    <div class="post-section">
+      <div class="post-card">
+
+        <h2 id="post-title"> {{this.title}} </h2>
+
+        <div class="post-container">
+          {{#each listOfPosts}}
+          <div class="post-card">
+            <h2 id="post-title"> {{this.title}} </h2>
+            <h4 id="post-date"> {{this.creation}} </h4>
+            <h4 id="post-date"> {{this.creation}} </h4>
+            <p id="post-description"> {{this.description}} </p>
+            <img id="post-image" src="{{this.image}}">
+            <p id="post-child"> {{this.child}} </p>
+          </div>
+          {{/each}}
+        </div>
+
+        <p id="post-description"> {{this.description}} </p>
+        <img id="post-image" src="{{this.image}}">
+        <p id="post-child"> {{this.child}} </p>
+
+      </div>
+      {{/each}}
+    </div> <!-- Close post section --> --}}
+
+
+    <!-- Gallery -->
+    <div id="portfolio" class="section gray">
+      <div class="gallery row">
+
+        {{#each listOfPosts}}
+
+        <div class="col l4 m6 s12 gallery-item gallery-expand gallery-filter polygon">
+          <div class="gallery-curve-wrapper">
+            <a class="gallery-cover gray">
+              <img class="responsive-img" src="{{this.image}}" alt="placeholder">
+            </a>
+            <div class="gallery-header">
+              <span>{{this.title}}</span>
+            </div>
+            <div class="gallery-body">
+              <div class="title-wrapper">
+                <h3>{{this.title}}</h3>
+                <span class="price">Age at creation: {{this.creation}}</span>
+              </div>
+              <p class="description">
+                {{this.description}}
+              </p>
+              <p class="description">
+                Ea salvia adipisicing vegan man bun. Flexitarian cupidatat skateboard flannel. Drinking vinegar marfa you probably haven't heard of them consequat post-ironic, shabby chic williamsburg raclette</p>
+
+              <div class="carousel-wrapper">
+                <div class="carousel">
+                  <a class="carousel-item" href="#one!"><img src="http://placehold.it/300x200"></a>
+                  <a class="carousel-item" href="#two!"><img src="http://placehold.it/300x200"></a>
+                  <a class="carousel-item" href="#three!"><img src="http://placehold.it/300x200"></a>
+                  <a class="carousel-item" href="#four!"><img src="http://placehold.it/300x200"></a>
+                  <a class="carousel-item" href="#five!"><img src="http://placehold.it/300x200"></a>
+                </div>
+              </div>
+            </div>
+            <div class="gallery-action">
+              <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">favorite</i></a>
+            </div>
+          </div>
+        </div>
+        {{/each}}
+
+      </div>
+
+    </div><!-- Close portfolio container -->
+
+  </div> <!-- Close post container -->
+
+
+  <footer>
+    <div class="right">
+      ©2019 all rights reserved. A project by Dusty Garon & Nelly Gonzalez-Vinas.
+    </div>
+  </footer>
+
+</div>
+
+
+
+<script src="/javascripts/new-child.js"></script>

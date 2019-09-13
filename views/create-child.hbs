@@ -1,0 +1,60 @@
+<div class="container">
+    {{!-- <h2>Add a New Child</h2>
+    <form action="/feed/create-child" method="POST" enctype="multipart/form-data">
+        <div>
+            <label>Name</label>
+            <input type="text" name="theName">
+        </div>
+        <div>
+            <label>Date of Birth</label>
+            <input type="text" class="datepicker" name="theDateOfBirth">
+        </div>
+        <div>
+            <label>Image</label>
+            <input type="file" name="childImage">
+        </div>
+        <button>Save</button>
+    </form> --}}
+
+
+
+    <div class="row">
+        <h3>Add Child</h3>
+        <form class="col s12" action="/feed/create-child" method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Johnny" id="first_name" type="text" class="validate" name="theName">
+                    <label for="first_name">Child's Name</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <label for="birthdate">Child's Birthdate</label>
+                    <input type="text" class="datepicker" placeholder="Select Date" class="validate" name="theDateOfBirth">
+                </div>
+            </div>
+            <div class="row">
+                <div class="file-field input-field col s6">
+                    <div class="btn waves-effect">
+                        <span>File</span>
+                        <input type="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" placeholder="Upload an image of your child">
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col s6 push-s4">
+                    <button class="btn waves-effect waves-light btn-large" type="submit" name="action">Add Child
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+
+            </div>
+
+
+        </form>
+    </div>
+</div>
