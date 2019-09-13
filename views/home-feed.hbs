@@ -82,9 +82,9 @@
         <div class="card-content">
           <span class="card-title activator grey-text text-darken-4">{{this.name}}<i class="material-icons right">mode_edit</i></span>
           {{!-- <p><a href="/feed/details/{{this._id}}">Edit Profile</a></p> --}}
-          <p>
-            <!-- {{this.dob}} --> # Years Old</p>
+          <p> {{moment-age this.creation childDob='2018-06-04'}} Years Old</p>
         </div>
+
 
         <!-- Reveal edit form -->
         <div class="card-reveal">
@@ -176,38 +176,11 @@
 
   <!-- Home feed -->
   <div class="post-container">
-    <h1>Home Feed</h1>
-
-    {{!-- {{#each listOfPosts}}
-    <div class="post-section">
-      <div class="post-card">
-
-        <h2 id="post-title"> {{this.title}} </h2>
-
-        <div class="post-container">
-          {{#each listOfPosts}}
-          <div class="post-card">
-            <h2 id="post-title"> {{this.title}} </h2>
-            <h4 id="post-date"> {{this.creation}} </h4>
-            <h4 id="post-date"> {{this.creation}} </h4>
-            <p id="post-description"> {{this.description}} </p>
-            <img id="post-image" src="{{this.image}}">
-            <p id="post-child"> {{this.child}} </p>
-          </div>
-          {{/each}}
-        </div>
-
-        <p id="post-description"> {{this.description}} </p>
-        <img id="post-image" src="{{this.image}}">
-        <p id="post-child"> {{this.child}} </p>
-
-      </div>
-      {{/each}}
-    </div> <!-- Close post section --> --}}
-
+    <h2>Home Feed</h2>
 
     <!-- Gallery -->
     <div id="portfolio" class="section gray">
+
       <div class="gallery row">
 
         {{#each listOfPosts}}
@@ -215,7 +188,7 @@
         <div class="col l4 m6 s12 gallery-item gallery-expand gallery-filter polygon">
           <div class="gallery-curve-wrapper">
             <a class="gallery-cover gray">
-              <img class="responsive-img" src="{{this.image}}" alt="placeholder">
+              <img class="responsive-img" src="{{this.image}}" alt="{{this.description}}">
             </a>
             <div class="gallery-header">
               <span>{{this.title}}</span>
@@ -223,43 +196,28 @@
             <div class="gallery-body">
               <div class="title-wrapper">
                 <h3>{{this.title}}</h3>
-                <span class="price">Age at creation: {{this.creation}}</span>
+                <span class="price">Age at creation: {{moment-age this.creation childDob='2018-06-04'}}</span>
               </div>
               <p class="description">
                 {{this.description}}
               </p>
-              <p class="description">
-                Ea salvia adipisicing vegan man bun. Flexitarian cupidatat skateboard flannel. Drinking vinegar marfa you probably haven't heard of them consequat post-ironic, shabby chic williamsburg raclette</p>
+              <img class="responsive-img" src=" {{this.image}}" alt="{{this.description}}" style="width:100%;">
+              <a href="#">Edit this Piece</a>
+            </div>
 
-              <div class="carousel-wrapper">
-                <div class="carousel">
-                  <a class="carousel-item" href="#one!"><img src="http://placehold.it/300x200"></a>
-                  <a class="carousel-item" href="#two!"><img src="http://placehold.it/300x200"></a>
-                  <a class="carousel-item" href="#three!"><img src="http://placehold.it/300x200"></a>
-                  <a class="carousel-item" href="#four!"><img src="http://placehold.it/300x200"></a>
-                  <a class="carousel-item" href="#five!"><img src="http://placehold.it/300x200"></a>
-                </div>
-              </div>
-            </div>
             <div class="gallery-action">
-              <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">favorite</i></a>
+              <a href="#" class="btn-floating btn-large waves-effect waves-light tooltipped" data-position="bottom" data-tooltip="Send to Grandma"><i class="material-icons">email</i></a>
+              <a href="#" class="btn-floating btn-large waves-effect waves-light tooltipped" data-position="bottom" data-tooltip="Order Prints"><i class="material-icons">wallpaper</i></a>
             </div>
+
           </div>
         </div>
         {{/each}}
 
       </div>
-
     </div><!-- Close portfolio container -->
-
   </div> <!-- Close post container -->
 
-
-  <footer>
-    <div class="right">
-      ©2019 all rights reserved. A project by Dusty Garon & Nelly Gonzalez-Vinas.
-    </div>
-  </footer>
 
 </div>
 

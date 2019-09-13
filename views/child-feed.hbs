@@ -64,7 +64,7 @@
 </ul>
 
 
-{{!-- <!-- CREATE CHILD MODAL -->
+<!-- CREATE CHILD MODAL -->
 <div id="modal1" class="modal">
   <div class="modal-content">
     <h4>Add Child</h4>
@@ -106,7 +106,7 @@
     </div>
   </div>
 
-</div> <!-- END CHILD MODAL --> --}}
+</div> <!-- END CHILD MODAL -->
 
 
 <!-- MAIN CONTENT ================================== -->
@@ -137,7 +137,7 @@
         <div class="collapsible-body">
 
           <!-- Add a new piece to Child's portfolio. -->
-          <h2>Add a new piece to {{theChild.name}}'s portfolio</h2>
+          <h4>Add a new piece to {{theChild.name}}'s portfolio</h4>
 
           <form id="create-post">
 
@@ -201,7 +201,7 @@
       <div class="col l4 m6 s12 gallery-item gallery-expand gallery-filter polygon">
         <div class="gallery-curve-wrapper">
           <a class="gallery-cover gray">
-            <img class="responsive-img" src="{{this.image}}" alt="placeholder">
+            <img class="responsive-img" src=" {{this.image}}" alt="{{this.description}}">
           </a>
           <div class="gallery-header">
             <span>{{this.title}}</span>
@@ -211,25 +211,21 @@
               <h3>{{this.title}}</h3>
               <span class="price">Age at creation: {{moment-age this.creation childDob='2018-06-04'}} years old</span>
             </div>
-            <p class="description">
-              {{this.description}}
-            </p>
-            <p class="description">
-              Ea salvia adipisicing vegan man bun. Flexitarian cupidatat skateboard flannel. Drinking vinegar marfa you probably haven't heard of them consequat post-ironic, shabby chic williamsburg raclette</p>
-
-            <div class="carousel-wrapper">
-              <div class="carousel">
-                <a class="carousel-item" href="#one!"><img src="http://placehold.it/300x200"></a>
-                <a class="carousel-item" href="#two!"><img src="http://placehold.it/300x200"></a>
-                <a class="carousel-item" href="#three!"><img src="http://placehold.it/300x200"></a>
-                <a class="carousel-item" href="#four!"><img src="http://placehold.it/300x200"></a>
-                <a class="carousel-item" href="#five!"><img src="http://placehold.it/300x200"></a>
-              </div>
+            <div>
+              <p class="description">
+                {{this.description}}
+              </p>
+              <img class="responsive-img" src=" {{this.image}}" alt="{{this.description}}" style="width:100%;">
+              <a href="#">Edit this Piece</a>
             </div>
+
           </div>
+
           <div class="gallery-action">
-            <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">favorite</i></a>
+            <a href="#" class="btn-floating btn-large waves-effect waves-light tooltipped" data-position="bottom" data-tooltip="Send to Grandma"><i class="material-icons">email</i></a>
+            <a href="#" class="btn-floating btn-large waves-effect waves-light tooltipped" data-position="bottom" data-tooltip="Order Prints"><i class="material-icons">wallpaper</i></a>
           </div>
+
         </div>
       </div>
       {{/each}}
@@ -237,6 +233,7 @@
     </div>
   </div>
 </div><!-- /.container -->
+
 
 
 
