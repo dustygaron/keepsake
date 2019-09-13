@@ -55,13 +55,11 @@
 
 </nav>
 <ul class="side-nav" id="nav-mobile">
-  <li class="active"><a href="index.html"><i class="material-icons">camera</i>Gallery</a></li>
-  <li><a href="index-dark.html"><i class="material-icons">brightness_3</i>Dark Theme</a></li>
-  <li><a href="blog.html"><i class="material-icons">edit</i>Blog</a></li>
-  <li><a href="docs.html"><i class="material-icons">school</i>Docs</a></li>
-  <li><a href="full-header.html"><i class="material-icons">fullscreen</i>Fullscreen Header</a></li>
-  <li><a href="horizontal.html"><i class="material-icons">swap_horiz</i>Horizontal Style</a></li>
-  <li><a href="no-image.html"><i class="material-icons">texture</i>No Image Expand</a></li>
+  {{#if currentUser}}
+  <li class="active"><a href="/feed"><i class="material-icons">home</i>Home Feed</a></li>
+  <li><a href="/feed/user-details"><i class="material-icons">account_circle</i>Edit Profile</a></li>
+  <li><a href="/feed/logout"><i class="material-icons">chevron_right</i>Logout</a></li>
+  {{/if}}
 </ul>
 
 
@@ -69,13 +67,13 @@
 <div class="container">
 
   <!-- Child cards -->
-  <div class="row" id="child-list">
+  <div class=" row" id="child-list">
 
     {{#each listOfChildren}}
     {{#if this.owned}}
-    <div class="col s12 m3">
+    <div class="col s12 m6 l3">
 
-      <div class="card small">
+      <div class="card small hoverable">
         <a href="/feed/{{this._id}}">
           <div class="card-image waves-effect waves-block waves-light">
             <img class="activator" src="{{modifyUrlOfProfile this.image  urlString='w_300,h_300,c_fill,g_auto/'}}">
@@ -111,12 +109,12 @@
     {{/if}}
     {{/each}}
 
-    <div class="col s12 m3">
+    <div class="col s12 m6 l3">
       <a href="#modal1">
-        <div class="card">
+        <div class="card small add-child-bg-img hoverable">
           <div class="card-image">
-            <img src="images/add-child.jpg">
-            <span class="card-title">Add New Child</span>
+            {{!-- <img src="images/add-child.jpg"> --}}
+            <span id="card-title" class="valign-wrapper">Add New Child</span>
           </div>
         </div>
       </a>
@@ -124,67 +122,67 @@
   </div>
 
 
-    <!-- Add new child modal -->
-    <div id="modal1" class="modal">
-      <div class="modal-content">
-        <h4>Add Child</h4>
-        <div class="row">
+  <!-- Add new child modal -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Add Child</h4>
+      <div class="row">
 
-          {{!-- The first form method is used if getting through router. Second form method is for posting with axios --}}
-          {{!-- <form class="col s12" action="/feed/create-child" method="POST" enctype="multipart/form-data"> --}}
-          <form class="col s12" id="create-child">
-            <input type="hidden" id="creatorId" value="{{theUser._id}}">
-            <div class="row">
-              <div class="input-field col s12">
-                <input placeholder="Ex: Johnny" id="childName" type="text" class="validate" name="theName">
-                <label for="child_name">Child's Name</label>
+        {{!-- The first form method is used if getting through router. Second form method is for posting with axios --}}
+        {{!-- <form class="col s12" action="/feed/create-child" method="POST" enctype="multipart/form-data"> --}}
+        <form class="col s12" id="create-child">
+          <input type="hidden" id="creatorId" value="{{theUser._id}}">
+          <div class="row">
+            <div class="input-field col s12">
+              <input placeholder="Ex: Johnny" id="childName" type="text" class="validate" name="theName">
+              <label for="child_name">Child's Name</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <label for="birthdate">Child's Birthdate</label>
+              <input type="date" class="datepicker" class="validate" name="theDateOfBirth" id="childDob">
+            </div>
+          </div>
+          <div class="row">
+            <div class="file-field input-field col s12">
+              <div class="btn waves-effect">
+                <span>File</span>
+                <input type="file" id="newChildImage">
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text" placeholder="Upload an image of your child">
               </div>
             </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <label for="birthdate">Child's Birthdate</label>
-                <input type="date" class="datepicker" class="validate" name="theDateOfBirth" id="childDob">
-              </div>
+          </div>
+          <div class="modal-footer">
+            <div class="col s12 push">
+              <button class="btn waves-effect waves-light btn-large modal-close" type="submit" name="action">Add Child
+                <i class="material-icons right">send</i>
+              </button>
             </div>
-            <div class="row">
-              <div class="file-field input-field col s12">
-                <div class="btn waves-effect">
-                  <span>File</span>
-                  <input type="file" id="newChildImage">
-                </div>
-                <div class="file-path-wrapper">
-                  <input class="file-path validate" type="text" placeholder="Upload an image of your child">
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <div class="col s12 push">
-                <button class="btn waves-effect waves-light btn-large modal-close" type="submit" name="action">Add Child
-                  <i class="material-icons right">send</i>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
+    </div>
 
-    </div> <!-- END CHILD MODAL -->
-  </div> <!-- end child row -->
+  </div> <!-- END CHILD MODAL -->
+</div> <!-- end container -->
 
+<!-- Home feed -->
+<div class=" container post-container">
+  <h2>Home Feed</h2>
 
+  <!-- Gallery -->
+  <div id="portfolio" class="section gray">
 
-  <!-- Home feed -->
-  <div class="post-container">
-    <h2>Home Feed</h2>
+    <div class="gallery row">
 
-    <!-- Gallery -->
-    <div id="portfolio" class="section gray">
+      {{#each listOfPosts}}
 
-      <div class="gallery row">
+      <div class="col l4 m6 s12 gallery-item gallery-expand gallery-filter">
 
-        {{#each listOfPosts}}
-
-        <div class="col l4 m6 s12 gallery-item gallery-expand gallery-filter polygon">
+        <div class="hoverable">
           <div class="gallery-curve-wrapper">
             <a class="gallery-cover gray">
               <img class="responsive-img" src="{{this.image}}" alt="{{this.description}}">
@@ -210,12 +208,13 @@
             </div>
 
           </div>
-        </div>
-        {{/each}}
-
+        </div> <!-- close hoverable -->
       </div>
-    </div><!-- Close portfolio container -->
-  </div> <!-- Close post container -->
+      {{/each}}
+
+    </div>
+  </div><!-- Close portfolio container -->
+</div> <!-- Close post container -->
 
 
 </div>

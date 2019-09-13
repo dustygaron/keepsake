@@ -37,6 +37,15 @@ input[type="search"]:not(.browser-default):focus {
 .card.small {
   height: 360px; }
 
+.add-child-bg-img {
+  background-image: url("/images/add-child.jpg");
+  background-size: cover;
+  background-repeat: none;
+  max-width: 100%; }
+
+#card-title {
+  color: #333 !important; }
+
 .card.small .card-image {
   max-height: 70%; }
 
@@ -99,9 +108,10 @@ input[type="search"]:not(.browser-default):focus {
 .gallery-action {
   top: 150px !important; }
 
-.gallery .gallery-cover.static {
+.gallery-cover.static {
   transition: .25s !important;
-  height: 0% !important; }
+  opacity: 0;
+  height: 0px !important; }
 
 .title-wrapper {
   margin-left: 0 !important;

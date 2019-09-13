@@ -54,13 +54,11 @@
 
 </nav>
 <ul class="side-nav" id="nav-mobile">
-  <li class="active"><a href="index.html"><i class="material-icons">camera</i>Gallery</a></li>
-  <li><a href="index-dark.html"><i class="material-icons">brightness_3</i>Dark Theme</a></li>
-  <li><a href="blog.html"><i class="material-icons">edit</i>Blog</a></li>
-  <li><a href="docs.html"><i class="material-icons">school</i>Docs</a></li>
-  <li><a href="full-header.html"><i class="material-icons">fullscreen</i>Fullscreen Header</a></li>
-  <li><a href="horizontal.html"><i class="material-icons">swap_horiz</i>Horizontal Style</a></li>
-  <li><a href="no-image.html"><i class="material-icons">texture</i>No Image Expand</a></li>
+  {{#if currentUser}}
+  <li><a href="/feed"><i class="material-icons">home</i>Home Feed</a></li>
+  <li><a href="/feed/user-details"><i class="material-icons">account_circle</i>Edit Profile</a></li>
+  <li><a href="/feed/logout"><i class="material-icons">chevron_right</i>Logout</a></li>
+  {{/if}}
 </ul>
 
 
@@ -200,32 +198,34 @@
 
       <div class="col l4 m6 s12 gallery-item gallery-expand gallery-filter polygon">
         <div class="gallery-curve-wrapper">
-          <a class="gallery-cover gray">
-            <img class="responsive-img" src=" {{this.image}}" alt="{{this.description}}">
-          </a>
-          <div class="gallery-header">
-            <span>{{this.title}}</span>
-          </div>
-          <div class="gallery-body">
-            <div class="title-wrapper">
-              <h3>{{this.title}}</h3>
-              <span class="price">Age at creation: {{moment-age this.creation childDob='2018-06-04'}} years old</span>
+
+          <div class="hoverable">
+            <a class="gallery-cover gray">
+              <img class="responsive-img art-img" src=" {{this.image}}" alt="{{this.description}}">
+            </a>
+            <div class="gallery-header">
+              <span>{{this.title}}</span>
             </div>
-            <div>
-              <p class="description">
-                {{this.description}}
-              </p>
-              <img class="responsive-img" src=" {{this.image}}" alt="{{this.description}}" style="width:100%;">
-              <a href="#">Edit this Piece</a>
+            <div class="gallery-body">
+              <div class="title-wrapper">
+                <h3>{{this.title}}</h3>
+                <span class="price">Age at creation: {{moment-age this.creation childDob='2018-06-04'}} years old</span>
+              </div>
+              <div>
+                <p class="description">
+                  {{this.description}}
+                </p>
+                <img class="responsive-img" src=" {{this.image}}" alt="{{this.description}}" style="width:100%;">
+                <a href="#">Edit this Piece</a>
+              </div>
+
             </div>
 
-          </div>
-
-          <div class="gallery-action">
-            <a href="#" class="btn-floating btn-large waves-effect waves-light tooltipped" data-position="bottom" data-tooltip="Send to Grandma"><i class="material-icons">email</i></a>
-            <a href="#" class="btn-floating btn-large waves-effect waves-light tooltipped" data-position="bottom" data-tooltip="Order Prints"><i class="material-icons">wallpaper</i></a>
-          </div>
-
+            <div class="gallery-action">
+              <a href="#" class="btn-floating btn-large waves-effect waves-light tooltipped" data-position="bottom" data-tooltip="Send to Grandma"><i class="material-icons">email</i></a>
+              <a href="#" class="btn-floating btn-large waves-effect waves-light tooltipped" data-position="bottom" data-tooltip="Order Prints"><i class="material-icons">wallpaper</i></a>
+            </div>
+          </div> <!-- close hoverable -->
         </div>
       </div>
       {{/each}}
