@@ -94,7 +94,7 @@
               <form id="edit-form">
                 <input type="hidden" value="{{this._id}}" id="hidden-id">
                 <input type="text" id="edit-name" value="{{this.name}}" placeholder="name">
-                <input type="date" id="edit-dob" value="{{this.dob}}" placeholder="Birthday">
+                <input type="date" id="edit-dob" value="{{moment this.dob format="YYYY-MM-DD"}}" placeholder="Birthday">
                 <button class="btn-save-child right">Save</button>
               </form>
               <form action="/feed/{{this._id}}/remove" method="POST">

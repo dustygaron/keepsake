@@ -5,6 +5,20 @@ const cookieParser = require('cookie-parser');
 const express      = require('express');
 const favicon      = require('serve-favicon');
 const hbs          = require('hbs');
+var moment         = require('moment');
+hbs.moment = moment;
+hbs.registerHelper('moment', function(context, options) {
+  return moment(context).format(options.hash.format);
+});
+
+hbs.registerHelper('moment-age', function(context, options) {
+  var creationDate = new moment(context)
+  var childDob = new moment(options.hash.childDob)
+  var duration = creationDate.diff(childDob, 'years')
+  return duration
+});
+
+module.exports = hbs;
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
@@ -17,7 +31,6 @@ const LocalStrategy= require("passport-local").Strategy;
 const User         = require('./models/User');
 const bcrypt       = require('bcryptjs');
 const flash        = require("connect-flash");
-
 
 mongoose.Promise = Promise;
 mongoose
@@ -38,6 +51,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 
 // Express View engine setup
 

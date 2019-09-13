@@ -41,6 +41,7 @@ router.get('/api/feed/created-post/:id', (req, res, next)=>{
 
     Posting.findById(id)
     .then((theNewPosting)=>{
+    
         res.json(theNewPosting)
     })
     .catch((err)=>{
@@ -54,7 +55,7 @@ router.post('/api/feed/new-child', fileUploader.single('newChildImage'), (req, r
 
     Child.create({ 
         name: req.body.childName,
-        dob: moment(req.body.childDob).format("MM/DD/YYYY"),
+        dob: req.body.childDob,
         image: req.file.url,
         creator: req.user._id
     })
@@ -77,10 +78,9 @@ router.get('/api/feed/created-child/:id', (req, res, next) => {
     
     let id = req.params.id
 
-    console.log(id)
-
     Child.findById(id)
     .then((theNewChild)=>{
+        
         res.json(theNewChild)
     })
     .catch((err)=>{

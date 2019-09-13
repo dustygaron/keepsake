@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  
+
 
   document.getElementById('create-child').onsubmit = function(event){
 
@@ -40,6 +40,8 @@ formData.append('creatorId', creator);
       
         axios.get('/api/feed/created-child/'+childId)
           .then((response)=>{
+            
+            console.log(response)
            // take the new updated info and put it on the page
            
            let createdChild = response.data
@@ -49,8 +51,6 @@ formData.append('creatorId', creator);
            let theDob = createdChild.dob
            let theImage = createdChild.image
            let theNewChildId = createdChild._id
-   
-           //console.log("THE DOB IS=============:"+theDob)
    
 
           $("#child-list").prepend(`<div class="col s12 m2"><a href="/feed/${theNewChildId}">
