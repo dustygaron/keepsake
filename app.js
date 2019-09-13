@@ -15,10 +15,33 @@ hbs.registerHelper('moment-age', function(context, options) {
   var creationDate = new moment(context)
   var childDob = new moment(options.hash.childDob)
   var duration = creationDate.diff(childDob, 'years')
+
   return duration
 });
 
 hbs.registerHelper('modifyUrlOfProfile', function(context, options) {
+  var url = context; 
+  var stringToAddToUrl = options.hash.urlString; 
+  let position = url.indexOf("upload")
+  let posToInsertString = position += 7
+
+  let modifiedString = url.substr(0, posToInsertString) + stringToAddToUrl + url.substr(posToInsertString); 
+
+  return modifiedString
+});
+
+hbs.registerHelper('modifyUrlOfChildFeedImg', function(context, options) {
+  var url = context; 
+  var stringToAddToUrl = options.hash.urlString; 
+  let position = url.indexOf("upload")
+  let posToInsertString = position += 7
+
+  let modifiedString = url.substr(0, posToInsertString) + stringToAddToUrl + url.substr(posToInsertString); 
+
+  return modifiedString
+});
+
+hbs.registerHelper('modifyUrlOfChildNavImg', function(context, options) {
   var url = context; 
   var stringToAddToUrl = options.hash.urlString; 
   let position = url.indexOf("upload")
