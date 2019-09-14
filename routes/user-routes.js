@@ -2,6 +2,7 @@ const express = require('express');
 const router  = express.Router();
 const User    = require('../models/User');
 const Child = require('../models/Child');
+const Posting = require('../models/Posting');
 const bcrypt = require('bcryptjs');
 const passport = require("passport");
 
@@ -137,12 +138,26 @@ router.post('/feed/user-details/:id/remove', (req, res, next)=>{
   const userId=req.user._id;
 
   User.findByIdAndRemove(userId)
-  .then(()=>{
+  .then((userRemoved)=>{
    
-    req.flash('success','The user account has been deleted.')
+    Child.deleteMany({creator:userId})
+    .then((childrenRemoved) => {
 
-    res.redirect('/')
-    //res redirect take a url as the argument
+      Posting.deleteMany({creator:userId})
+      .then((postRemoved) => {
+ 
+        req.flash('success','The user account has been deleted.')
+    
+        res.redirect('/')
+        //res redirect take a url as the argument   
+      })
+      .catch((err) => {
+        next(err);
+      })
+    })
+    .catch((err) => {
+      next(err);
+    })
   })
   .catch((err)=>{
     next(err);

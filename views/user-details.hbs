@@ -78,19 +78,20 @@
   </li>
 </ul>
 
-<!-- Edit user details -->
+<!-- Edit user details ==============================================================================-->
 <div class="container">
   <div class="row">
     <div class="edit-user-account">
 
-      <form action="">
+      <form id="edit-user">
+        <input type="hidden" value="{{theUser._id}}" id="hidden-user-id">
         <label for="user-name">Username:</label>
         <input type="text" id="user-name" placeholder="Current: {{theUser.username}}">
         {{!-- {{theUser.username}} --}}
         </input>
 
         <label for="user-password">Password:</label>
-        <input type="text" id="user-name" placeholder="Current: {{theUser.password}}">
+        <input type="text" id="user-password" placeholder="Current Password Hidden for Security">
         {{!-- {{theUser.password}} --}}
         </input>
 
@@ -116,3 +117,5 @@
     </div>
   </div> <!-- Close row -->
 </div> <!-- Close container -->
+
+<script src="/javascripts/edit-user.js"></script>

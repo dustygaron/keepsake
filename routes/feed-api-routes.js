@@ -1,5 +1,6 @@
 const express = require('express');
 const router  = express.Router();
+const bcrypt = require('bcryptjs');
 const Posting = require('../models/Posting');
 const Child   = require('../models/Child');
 const User    = require('../models/User');
@@ -80,7 +81,7 @@ router.get('/api/feed/created-child/:id', (req, res, next) => {
 
     Child.findById(id)
     .then((theNewChild)=>{
-        
+
         res.json(theNewChild)
     })
     .catch((err)=>{
@@ -89,6 +90,88 @@ router.get('/api/feed/created-child/:id', (req, res, next) => {
   })
   
   
+// EDIT CHILD  =========================================================
+
+router.put('/api/feed/edit-child/:id', fileUploader.single('newChildImage'), (req, res, next)=>{
+
+    let id = req.params.id;
+
+    Child.findByIdAndUpdate(id, {$set: {name: req.body.childName, dob: req.body.childDob}})
+    .then((theUpdatedChild)=>{
+  
+        res.json({msg: 'Data has been converted into JSON', theUpdatedChild});
+        console.log(theUpdatedChild.data)
+    })  
+    .catch((err)=>{
+        console.log(err)
+    })
+  }
+
+  )
+
+// GET EDITED CHILD =======================================================
+
+router.get('/api/feed/edited-child/:id', (req, res, next) => {
+    
+    let id = req.params.id
+
+    Child.findById(id)
+    .then((theNewChild)=>{
+
+        res.json(theNewChild)
+    })
+    .catch((err)=>{
+        next(err);
+    })
+  })
+
+
+// EDIT USER  =======================================================
+
+
+router.put('/api/feed/edit-user/:id', fileUploader.single('newUserImage'), (req, res, next)=>{
+
+    let id = req.user._id;
+    let pword = req.body.userPw
+
+    const salt = bcrypt.genSaltSync(10);
+    const hashedPassword = bcrypt.hashSync(pword, salt);
+
+    User.findByIdAndUpdate(id, {$set: {username: req.body.userName, password: hashedPassword, email: req.body.userEmail}})
+    .then((theUpdatedUser)=>{
+        req.flash('Success', 'Your account has been updated.')
+        res.json({msg: 'Data has been converted into JSON', theUpdatedUser});
+        console.log(theUpdatedUser.data)
+    })  
+    .catch((err)=>{
+        console.log(err)
+    })
+  }
+
+  )
+
+
+  // EDIT USER  =======================================================
+
+  router.get('/api/feed/edited-user/:id', (req, res, next) => {
+    
+    let id = req.user._id
+
+    User.findById(id)
+    .then((theUpdatedUser)=>{
+
+        res.json(theUpdatedUser)
+    })
+    .catch((err)=>{
+        next(err);
+    })
+  })
+
+
+
+
+
+
 
 
 

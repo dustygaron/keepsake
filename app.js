@@ -6,18 +6,49 @@ const express      = require('express');
 const favicon      = require('serve-favicon');
 const hbs          = require('hbs');
 var moment         = require('moment');
+
+module.exports = hbs;
+const mongoose     = require('mongoose');
+const logger       = require('morgan');
+const path         = require('path');
+
+const session      = require("express-session");
+const MongoStore= require("connect-mongo")(session);
+const passport     = require("passport");
+const LocalStrategy= require("passport-local").Strategy;
+
+const User         = require('./models/User');
+const bcrypt       = require('bcryptjs');
+const flash        = require("connect-flash");
+
 hbs.moment = moment;
 hbs.registerHelper('moment', function(context, options) {
   return moment(context).format(options.hash.format);
 });
 
 hbs.registerHelper('moment-age', function(context, options) {
-  var creationDate = new moment(context)
-  var childDob = new moment(options.hash.childDob)
-  var duration = creationDate.diff(childDob, 'years')
-
-  return duration
+  var latestDate = moment(context)
+  //return options.hash
+  // var earliestDate = new moment(options.hash.childDob)
+  // var duration = latestDate.diff(earliestDate, 'years')
+  //console.log(options.hash)
+  // return duration
 });
+
+hbs.registerHelper('child-age', function(context) {
+  var childsDate = moment(context)
+  var today = new moment()//return options.hash
+  // var earliestDate = new moment(options.hash.childDob)
+  //return options.hash
+  //var ageInYears = today.diff(childsDate, 'years')
+  //return ageInYears
+});
+
+hbs.registerHelper('moment-today', function() {
+  var today = new moment()
+  return today
+});
+
 
 hbs.registerHelper('modifyUrlOfProfile', function(context, options) {
   var url = context; 
@@ -51,23 +82,6 @@ hbs.registerHelper('modifyUrlOfChildNavImg', function(context, options) {
 
   return modifiedString
 });
-
-
-
-
-module.exports = hbs;
-const mongoose     = require('mongoose');
-const logger       = require('morgan');
-const path         = require('path');
-
-const session      = require("express-session");
-const MongoStore= require("connect-mongo")(session);
-const passport     = require("passport");
-const LocalStrategy= require("passport-local").Strategy;
-
-const User         = require('./models/User');
-const bcrypt       = require('bcryptjs');
-const flash        = require("connect-flash");
 
 mongoose.Promise = Promise;
 mongoose

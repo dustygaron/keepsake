@@ -74,23 +74,33 @@ router.get('/details/:idVariable', (req, res, next) => {
 })
 
 
-// REMOVE CHILD =================================
+// REMOVE CHILD AND POSTINGS =================================
 
 router.post('/:id/remove', (req, res, next) => {
   const id = req.params.id;
 
-  Child.findByIdAndRemove(id)
+  
+    Child.findByIdAndRemove(id)
     .then((childRemoved) => {
 
-      req.flash('success', 'Child removed')
+      Posting.deleteMany({child:id})
+      .then((postRemoved) => {
 
-      res.redirect('/feed')
-      //res redirect take a url as the argument
+        
+        req.flash('success', 'Child and postings removed')
+  
+        res.redirect('/feed')
+        //res redirect take a url as the argument    
+      })
+      .catch((err) => {
+        next(err);
+      })
     })
     .catch((err) => {
       next(err);
     })
-})
+
+}) // end of router.post
 
 
 // LOAD CHILD FEED =================================
