@@ -35,6 +35,13 @@ router.get('/', (req, res, next) => {
 
           let postList = posts.map((eachPost) => {
             if (eachPost.creator.equals(req.user._id)) {
+            children.map((eachChild) => {
+              if (eachChild.id == eachPost.child) {
+                eachPost.child = eachChild;
+              } else {
+                console.log("No children found for this user.")
+              }
+            })
             eachPost.owned = true;
             return eachPost
             } else {
@@ -74,23 +81,33 @@ router.get('/details/:idVariable', (req, res, next) => {
 })
 
 
-// REMOVE CHILD =================================
+// REMOVE CHILD AND POSTINGS =================================
 
 router.post('/:id/remove', (req, res, next) => {
   const id = req.params.id;
 
-  Child.findByIdAndRemove(id)
+  
+    Child.findByIdAndRemove(id)
     .then((childRemoved) => {
 
-      req.flash('success', 'Child removed')
+      Posting.deleteMany({child:id})
+      .then((postRemoved) => {
 
-      res.redirect('/feed')
-      //res redirect take a url as the argument
+        
+        req.flash('success', 'Child and postings removed')
+  
+        res.redirect('/feed')
+        //res redirect take a url as the argument    
+      })
+      .catch((err) => {
+        next(err);
+      })
     })
     .catch((err) => {
       next(err);
     })
-})
+
+}) // end of router.post
 
 
 // LOAD CHILD FEED =================================
@@ -110,13 +127,20 @@ Child.find()
       Posting.find({creator: req.user._id})
         .then((posts) => {
 
-          let postList = posts.map((eachPost)=>{
-          if(eachPost.child.equals(childId)){
+          let postList = posts.map((eachPost) => {
+            if (eachPost.creator.equals(req.user._id)) {
+            children.map((eachChild) => {
+              if (eachChild.id == eachPost.child) {
+                eachPost.child = eachChild;
+              } else {
+                console.log("No children found for this user.")
+              }
+            })
             eachPost.owned = true;
             return eachPost
-          } else {
+            } else {
             console.log("No postings found for this user.")
-          }
+            }
           })
 
           let childList = children.map((eachChild) => {
