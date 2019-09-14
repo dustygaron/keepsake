@@ -206,7 +206,24 @@
               </p>
               <img class="responsive-img" src=" {{this.image}}" alt="{{this.description}}" style="width:100%;">
               <a href="#">Edit this Piece</a>
+
+
+              <!-- edit this piece -->
+              <div class="col s12 edit-this-piece">
+                <form id="edit-form">
+                  <input type="text" id="" value="{{this.title}}">
+                  <input type="date" id="" value="{{this.creation}}" placeholder="Creation Date">
+                  <input type="text" id="" value="{{this.description}}">
+                  <input type="text" id="" value="{{this.image}}">
+
+                  <button class="btn-submit right">Update</button>
+                </form>
+                <form action="/feed/remove-post/{{this._id}}" method="POST">
+                  <button class="btn-delete">Delete this Piece</button>
+                </form>
+              </div>
             </div>
+
 
             <div class="gallery-action">
               <a href="#" class="btn-floating btn-large waves-effect waves-light tooltipped" data-position="bottom" data-tooltip="Send to Grandma"><i class="material-icons">email</i></a>
