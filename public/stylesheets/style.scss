@@ -199,6 +199,23 @@ nav ul a:hover {
   line-height: 2.5;
 }
 
+.picker__weekday-display {
+  display: none;
+}
+
+.picker__holder {
+  width: 100% !important;
+}
+
+.picker__calendar-container,
+.picker__table {
+  width: 300px !important;
+}
+
+.picker__footer {
+  display: block !important;
+  width: 100px !important;
+}
 
 // -----------
 // login PAGE
@@ -233,6 +250,26 @@ nav ul a:hover {
 .login-box {
   width: 60%;
 }
+
+.tabs .indicator {
+  background-color: $color-yellow;
+}
+
+.tabs .tab a {
+  border-bottom: 2px solid $color-purple;
+  color: $color-purple;
+}
+
+.tabs .tab a:hover {
+  color: black;
+}
+
+.tabs .tab a.active {
+  background: $color-purple;
+  color: white;
+  border-bottom: 2px solid $color-purple;
+}
+
 
 // EDIT USER 
 #user-children img {

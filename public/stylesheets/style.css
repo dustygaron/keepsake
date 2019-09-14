@@ -127,6 +127,20 @@ nav ul a:hover {
 #add-artwork-collapsible .collapsible-header {
   line-height: 2.5; }
 
+.picker__weekday-display {
+  display: none; }
+
+.picker__holder {
+  width: 100% !important; }
+
+.picker__calendar-container,
+.picker__table {
+  width: 300px !important; }
+
+.picker__footer {
+  display: block !important;
+  width: 100px !important; }
+
 #login-page-logo {
   max-width: 200px;
   margin: 80px; }
@@ -151,6 +165,21 @@ nav ul a:hover {
 
 .login-box {
   width: 60%; }
+
+.tabs .indicator {
+  background-color: #f2b550; }
+
+.tabs .tab a {
+  border-bottom: 2px solid #89249f;
+  color: #89249f; }
+
+.tabs .tab a:hover {
+  color: black; }
+
+.tabs .tab a.active {
+  background: #89249f;
+  color: white;
+  border-bottom: 2px solid #89249f; }
 
 #user-children img {
   margin-right: 10px; }

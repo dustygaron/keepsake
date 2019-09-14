@@ -3,12 +3,12 @@
 // DATEPICKER
 // ------------------
 $('.datepicker').pickadate({
-  // labelMonthNext: 'Go to the next month',
-  // labelMonthPrev: 'Go to the previous month',
-  labelMonthSelect: 'Pick a month from the dropdown',
-  labelYearSelect: 'Pick a year from the dropdown',
+  labelMonthNext: 'Go to the next month',
+  labelMonthPrev: 'Go to the previous month',
+  // labelMonthSelect: 'Pick a month from the dropdown',
+  // labelYearSelect: 'Pick a year from the dropdown',
   selectMonths: true,
-  selectYears: 30,
+  selectYears: true,
   selectYear: 'picker__select--year',
   // formatSubmit: 'yyyy/mm/dd',
   hiddenName: true,
