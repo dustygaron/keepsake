@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
           dateMonth = theDate.slice(5,7)
           dateDay = theDate.slice(8,10)
 
-          convertedDate = String(dobYear)+"-"+String(dobMonth)+"-"+String(dobDay)
+          convertedDate = String(dateYear)+"-"+String(dateMonth)+"-"+String(dateDay)
 
            // CREATE HTML TO APPEND ==================================================
 
@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-// }  // end of On-submit EDIT post function
+}  // end of On-submit EDIT post function
 
 
 
