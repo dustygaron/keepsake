@@ -191,17 +191,17 @@
         <div class="hoverable">
           <div class="gallery-curve-wrapper">
             <a class="gallery-cover gray">
-              <img class="responsive-img" src="{{this.image}}" alt="{{this.description}}">
+              <img id="post-image" class="responsive-img" src="{{this.image}}" alt="{{this.description}}">
             </a>
             <div class="gallery-header">
-              <span>{{this.title}}</span>
+              <span id="post-title">{{this.title}}</span>
             </div>
             <div class="gallery-body">
               <div class="title-wrapper">
-                <h3>{{this.title}}</h3>
+                <h3 id="post-title">{{this.title}}</h3>
                 <span class="price">Age at creation: {{moment-age this.creation dob=this.child.dob}}</span>
               </div>
-              <p class="description">
+              <p id="post-description" class="description">
                 {{this.description}}
               </p>
               <img class="responsive-img" src=" {{this.image}}" alt="{{this.description}}" style="width:100%;">
@@ -211,10 +211,14 @@
               <!-- edit this piece -->
               <div class="col s12 edit-this-piece">
                 <form id="edit-form">
-                  <input type="text" id="" value="{{this.title}}">
-                  <input type="date" id="" value="{{this.creation}}" placeholder="Creation Date">
-                  <input type="text" id="" value="{{this.description}}">
-                  <input type="text" id="" value="{{this.image}}">
+                  <input type="text" id="edit-title" value="{{this.title}}">
+                  <input type="date" id="edit-date" value="{{this.creation}}" placeholder="Creation Date" format="YYYY-MM-DD">
+                  <input type="text" id="edit-description" value="{{this.description}}">
+                  <input type="text" id="edit-image" value="{{this.image}}">
+                  <input type="hidden" value="{{this._id}}" id="hidden-post-id">
+                  
+                  <input type="hidden" id="postId" value="{{this._id}}">
+                  {{!-- <input type="hidden" id="postChildBirthdate" value="{{theChild.dob}}"> --}}
 
                   <button class="btn-submit right">Update</button>
                 </form>
