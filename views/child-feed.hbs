@@ -219,10 +219,13 @@
               <!-- edit this piece -->
               <div class="col s12 edit-this-piece">
                 <form id="edit-form">
-                  <input type="text" id="" value="{{this.title}}">
-                  <input type="date" id="" value="{{this.creation}}" placeholder="Creation Date">
-                  <input type="text" id="" value="{{this.description}}">
-                  <input type="text" id="" value="{{this.image}}">
+                  <input type="text" id="edit-title" value="{{this.title}}">
+                  <input type="date" id="edit-date" value="{{this.creation}}" placeholder="Creation Date" format="YYYY-MM-DD">
+                  <input type="text" id="edit-description" value="{{this.description}}">
+                  <input type="text" id="edit-image" value="{{this.image}}">
+                  
+                  <input type="hidden" id="postId" value="{{this._id}}">
+                  {{!-- <input type="hidden" id="postChildBirthdate" value="{{theChild.dob}}"> --}}
 
                   <button class="btn-submit right">Update</button>
                 </form>
@@ -253,4 +256,4 @@
 
 
 
-<script src="/javascripts/new-post.js"></script>
+<script src="/javascripts/edit-post.js"></script>

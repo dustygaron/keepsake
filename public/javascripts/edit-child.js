@@ -185,8 +185,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let dob = document.getElementById('edit-dob').value;
     let childId = document.getElementById('hidden-id').value;
 
-
-
     formData.set('childName', name);
     formData.set('childDob', dob);
 
