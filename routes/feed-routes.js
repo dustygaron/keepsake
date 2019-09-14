@@ -35,6 +35,13 @@ router.get('/', (req, res, next) => {
 
           let postList = posts.map((eachPost) => {
             if (eachPost.creator.equals(req.user._id)) {
+            children.map((eachChild) => {
+              if (eachChild.id == eachPost.child) {
+                eachPost.child = eachChild;
+              } else {
+                console.log("No children found for this user.")
+              }
+            })
             eachPost.owned = true;
             return eachPost
             } else {
@@ -120,13 +127,20 @@ Child.find()
       Posting.find({creator: req.user._id})
         .then((posts) => {
 
-          let postList = posts.map((eachPost)=>{
-          if(eachPost.child.equals(childId)){
+          let postList = posts.map((eachPost) => {
+            if (eachPost.creator.equals(req.user._id)) {
+            children.map((eachChild) => {
+              if (eachChild.id == eachPost.child) {
+                eachPost.child = eachChild;
+              } else {
+                console.log("No children found for this user.")
+              }
+            })
             eachPost.owned = true;
             return eachPost
-          } else {
+            } else {
             console.log("No postings found for this user.")
-          }
+            }
           })
 
           let childList = children.map((eachChild) => {

@@ -27,12 +27,12 @@ hbs.registerHelper('moment', function(context, options) {
 });
 
 hbs.registerHelper('moment-age', function(context, options) {
-  var latestDate = moment(context)
-  //return options.hash
-  // var earliestDate = new moment(options.hash.childDob)
-  // var duration = latestDate.diff(earliestDate, 'years')
+  var creationDate = moment(context)
+  var earliestDate = new moment(options.hash.dob)
+  var duration = creationDate.diff(earliestDate, 'years')
   //console.log(options.hash)
-  // return duration
+  //JSON.stringify();
+  return duration
 });
 
 hbs.registerHelper('child-age', function(context) {
@@ -40,8 +40,8 @@ hbs.registerHelper('child-age', function(context) {
   var today = new moment()//return options.hash
   // var earliestDate = new moment(options.hash.childDob)
   //return options.hash
-  //var ageInYears = today.diff(childsDate, 'years')
-  //return ageInYears
+  var ageInYears = today.diff(childsDate, 'years')
+  return ageInYears
 });
 
 hbs.registerHelper('moment-today', function() {
