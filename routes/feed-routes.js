@@ -110,6 +110,27 @@ router.post('/:id/remove', (req, res, next) => {
 }) // end of router.post
 
 
+
+// REMOVE POSTING FROM HOME PAGE =================================
+
+router.post('/remove-post/:id', (req, res, next) => {
+  const id = req.params.id;
+
+    Posting.findByIdAndRemove(id)
+    .then((postRemoved) => {
+
+      req.flash('success', 'Posting removed')
+
+      res.redirect('/feed')
+      //res redirect take a url as the argument    
+    })
+    .catch((err) => {
+      next(err);
+    })
+
+}) // end of router.post
+
+
 // LOAD CHILD FEED =================================
 
 router.get('/:childId', (req, res, next) => {

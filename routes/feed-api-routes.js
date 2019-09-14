@@ -151,7 +151,7 @@ router.put('/api/feed/edit-user/:id', fileUploader.single('newUserImage'), (req,
   )
 
 
-  // EDIT USER  =======================================================
+  // GET EDITED USER  =======================================================
 
   router.get('/api/feed/edited-user/:id', (req, res, next) => {
     
@@ -161,6 +161,42 @@ router.put('/api/feed/edit-user/:id', fileUploader.single('newUserImage'), (req,
     .then((theUpdatedUser)=>{
 
         res.json(theUpdatedUser)
+    })
+    .catch((err)=>{
+        next(err);
+    })
+  })
+
+
+// EDIT POST  =========================================================
+
+router.put('/api/feed/edit-post/:id', fileUploader.single('newChildImage'), (req, res, next)=>{
+
+    let id = req.params.id;
+
+    Child.findByIdAndUpdate(id, {$set: {name: req.body.childName, dob: req.body.childDob}})
+    .then((theUpdatedChild)=>{
+  
+        res.json({msg: 'Data has been converted into JSON', theUpdatedChild});
+        console.log(theUpdatedChild.data)
+    })  
+    .catch((err)=>{
+        console.log(err)
+    })
+  }
+
+  )
+
+// GET EDITED POST =======================================================
+
+router.get('/api/feed/edited-post/:id', (req, res, next) => {
+    
+    let id = req.params.id
+
+    Child.findById(id)
+    .then((theNewChild)=>{
+
+        res.json(theNewChild)
     })
     .catch((err)=>{
         next(err);

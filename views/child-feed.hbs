@@ -218,6 +218,7 @@
                 </p>
                 <img class="responsive-img" src=" {{this.image}}" alt="{{this.description}}" style="width:100%;">
                 <a href="#">Edit this Piece</a>
+                <form action="/feed/remove-post/{{this._id}}" method="POST">Delete Post</form>
               </div>
 
             </div>
@@ -241,4 +242,4 @@
 
 
 
-<script src="/javascripts/new-post.js"></script>
+<script src="/javascripts/edit-post.js"></script>
