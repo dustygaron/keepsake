@@ -6,11 +6,6 @@
     <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
 
     <ul class="right hide-on-med-and-down top-nav-toggles">
-      <li class="welcome-back">
-        {{#if currentUser}}
-        You've got some talented kids, <span>{{currentUser.username}}</span>
-        {{/if}}
-      </li>
 
       {{#each listOfChildren}}
       {{#if this.owned}}

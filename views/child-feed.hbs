@@ -6,11 +6,6 @@
     <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
 
     <ul class="right hide-on-med-and-down top-nav-toggles">
-      <li class="welcome-back">
-        {{#if currentUser}}
-        You've got some talented kids, <span>{{currentUser.username}}</span>
-        {{/if}}
-      </li>
 
       {{#each listOfChildren}}
       {{#if this.owned}}
@@ -217,8 +212,24 @@
                   {{this.description}}
                 </p>
                 <img class="responsive-img" src=" {{this.image}}" alt="{{this.description}}" style="width:100%;">
-                <a href="#">Edit this Piece</a>
+                <a href="#modal-edit">Edit this Piece</a>
               </div>
+
+              <!-- edit this piece -->
+              <div class="col s12 edit-this-piece">
+                <form id="edit-form">
+                  <input type="text" id="" value="{{this.title}}">
+                  <input type="date" id="" value="{{this.creation}}" placeholder="Creation Date">
+                  <input type="text" id="" value="{{this.description}}">
+                  <input type="text" id="" value="{{this.image}}">
+
+                  <button class="btn-submit right">Update</button>
+                </form>
+                <form action="/feed/remove-post/{{this._id}}" method="POST">
+                  <button class="btn-delete">Delete this Piece</button>
+                </form>
+              </div>
+
 
             </div>
 

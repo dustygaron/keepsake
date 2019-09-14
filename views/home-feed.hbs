@@ -8,11 +8,6 @@
     <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
 
     <ul class="right hide-on-med-and-down top-nav-toggles">
-      <li class="welcome-back">
-        {{#if currentUser}}
-        You've got some talented kids, <span>{{currentUser.username}}</span>
-        {{/if}}
-      </li>
 
       {{#each listOfChildren}}
       {{#if this.owned}}
@@ -67,9 +62,14 @@
 <!-- MAIN CONTENT ================================== -->
 <div class="container">
 
+  <p class="welcome-back">
+    {{#if currentUser}}
+    Welcome back, <span>{{currentUser.username}}</span>. You've got some talented kids.
+    {{/if}}
+  </p>
+
   <!-- Child cards -->
   <div class=" row" id="child-list">
-
     {{#each listOfChildren}}
     {{#if this.owned}}
     <input type="hidden" value="{{this.dob}}" id="hidden-dob">
@@ -83,7 +83,6 @@
         </a>
         <div class="card-content">
           <span class="card-title activator grey-text text-darken-4" id="actual-child-name">{{this.name}}<i class="material-icons right">mode_edit</i></span>
-          {{!-- <p><a href="/feed/details/{{this._id}}">Edit Profile</a></p> --}}
           <p id="age-string"> {{child-age this.dob date=""}} Year(s) Old</p>
         </div>
 
@@ -113,13 +112,18 @@
 
     <div class="col s12 m6 l3">
       <a href="#modal1">
-        <div class="card small add-child-bg-img hoverable">
+        <div class="card small hoverable">
           <div class="card-image">
-            {{!-- <img src="images/add-child.jpg"> --}}
+            <img src="/images/add-child.jpg" alt="">
             <span id="card-title" class="valign-wrapper">Add New Child</span>
+          </div>
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4" id="actual-child-name"><i class="material-icons right">add</i></span>
+            <p>Add Child</p>
           </div>
         </div>
       </a>
+
     </div>
   </div>
 
@@ -195,7 +199,7 @@
             <div class="gallery-body">
               <div class="title-wrapper">
                 <h3>{{this.title}}</h3>
-                  <span class="price">Age at creation: {{moment-age this.creation dob=this.child.dob}}</span>
+                <span class="price">Age at creation: {{moment-age this.creation dob=this.child.dob}}</span>
               </div>
               <p class="description">
                 {{this.description}}
